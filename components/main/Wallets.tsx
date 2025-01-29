@@ -33,7 +33,7 @@ export default function WalletTodo() {
             <div className="px-4 pt-16 pb-36">
               <div className="relative">
                 {/** BEGIN page_content */}                
-                <h1 className="text-lg center font-bold mb-4">XLM Wallet To-Do List</h1>
+                <h1 className="text-lg text-center font-bold mb-4">XLM Wallet To-Do List</h1>
 
                 {/* Add Wallet Input */}
                 <div className="flex items-center bg-gray-800 p-2 rounded-lg">
