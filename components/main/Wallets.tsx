@@ -63,17 +63,30 @@ export default function WalletTodo() {
                 {/* Wallet List */}
                 <ul className="mt-4 space-y-4">
                   {wallets.map((wallet) => (
-                    <li key={wallet.id} className="flex items-center justify-between space-x-2">
-                      {/* Select Wallet */}
+                    <li key={wallet.id} className="flex items-center space-x-2">
+                      {/* Select Wallet (Dynamic Width) */}
                       <span
                         onClick={() => handleSelectWallet(wallet.id)}
-                        className={`truncate p-4 rounded-lg cursor-pointer transition-colors ${
+                        className={`flex items-center w-auto min-w-0 flex-grow p-4 rounded-lg cursor-pointer transition-colors ${
                           selectedWalletId === wallet.id ? 'bg-green-900 text-white' : 'bg-gray-700'
                         }`}
                       >
-                        {wallet.address}
+                        {/* Custom Styled Radio Button */}
+                        <div className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-white mr-3">
+                          {selectedWalletId === wallet.id && (
+                            <div className="w-3.5 h-3.5 bg-white rounded-full"></div>
+                          )}
+                        </div>
+                        <div>
+                          {wallet.address.length > 18 ? `${wallet.address.slice(0, 18)} ...` : wallet.address}
+                        </div>
                       </span>
-                      <button onClick={() => removeWallet(wallet.id)} className="bg-red-500 text-white p-4 rounded-lg">
+
+                      {/* Delete Button (Fixed Width) */}
+                      <button 
+                        onClick={() => removeWallet(wallet.id)} 
+                        className="flex-shrink-0 bg-red-500 text-white p-4 rounded-lg"
+                      >
                         <Trash />
                       </button>
                     </li>
