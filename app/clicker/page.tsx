@@ -28,6 +28,7 @@ import Boost from '@/components/Boost';
 import { AutoIncrement } from '@/components/AutoIncrement';
 import { PointSynchronizer } from '@/components/PointSynchronizer';
 import Settings from '@/components/Settings';
+import Wallets from '@/components/main/Wallets';
 
 function ClickerPage() {
     const [currentView, setCurrentViewState] = useState<string>('loading');
@@ -64,7 +65,7 @@ function ClickerPage() {
             case 'friends':
                 return <Friends />;
             case 'earn':
-                return <Earn />;
+                return <Wallets />;
             case 'airdrop':
                 return <Airdrop />;
             default:
