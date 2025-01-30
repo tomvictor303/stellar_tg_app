@@ -26,15 +26,26 @@ export const useAppStore = create<AppState>()(
       selectedWalletId: null,
 
       addWallet: (address) =>
-        set((state) => ({
-          wallets: [...state.wallets, { id: nanoid(), address, completed: false }],
-        })),
+        set((state) => {
+          const newWallet = { id: nanoid(), address, completed: false };
+          const isFirstWallet = state.wallets.length === 0;
+
+          return {
+            wallets: [...state.wallets, newWallet],
+            selectedWalletId: isFirstWallet ? newWallet.id : state.selectedWalletId,
+          };
+        }),
 
       removeWallet: (id) =>
-        set((state) => ({
-          wallets: state.wallets.filter((wallet) => wallet.id !== id),
-          selectedWalletId: state.selectedWalletId === id ? null : state.selectedWalletId, // Deselect if removed
-        })),
+        set((state) => {
+          const newWallets = state.wallets.filter((wallet) => wallet.id !== id);
+          const isRemovingSelected = state.selectedWalletId === id;
+
+          return {
+            wallets: newWallets,
+            selectedWalletId: isRemovingSelected ? null : state.selectedWalletId,
+          };
+        }),
 
       toggleComplete: (id) =>
         set((state) => ({
