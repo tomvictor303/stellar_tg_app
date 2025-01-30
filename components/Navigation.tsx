@@ -1,7 +1,7 @@
 // components/Navigation.tsx
 
 /**
- * This project was developed by Nikandr Surkov.
+ * This project was developed by Tom Jerry.
  * You may not use this code if you purchased it from any source other than the official website https://nikandr.com.
  * If you purchased it from the official website, you may use it for your own projects,
  * but you may not resell it or publish it publicly.
@@ -22,6 +22,7 @@ import Coins from '@/icons/Coins';
 import { iceToken } from '@/images';
 import IceCube from '@/icons/IceCube';
 import Rocket from '@/icons/Rocket';
+import Wallet from '@/icons/Wallet';
 import { FC } from 'react';
 import { IconProps } from '@/utils/types';
 import { triggerHapticFeedback } from '@/utils/ui';
@@ -34,11 +35,10 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-    { name: 'Game', icon: IceCube, view: 'game' },
-    { name: 'Mine', icon: Mine, view: 'mine' },
-    { name: 'Friends', icon: Friends, view: 'friends' },
-    { name: 'Earn', icon: Coins, view: 'earn' },
-    { name: 'Airdrop', image: iceToken, view: 'airdrop' },
+    { name: 'Rewards', icon: IceCube, view: 'rewards' },
+    { name: 'Investment', icon: Mine, view: 'investment' },
+    { name: 'History', icon: Friends, view: 'history' },
+    { name: 'Wallets', icon: Wallet, view: 'wallets' },
 ];
 
 interface NavigationProps {

@@ -1,7 +1,7 @@
 // contexts/ToastContext.tsx
 
 /**
- * This project was developed by Nikandr Surkov.
+ * This project was developed by Tom Jerry.
  * You may not use this code if you purchased it from any source other than the official website https://nikandr.com.
  * If you purchased it from the official website, you may use it for your own projects,
  * but you may not resell it or publish it publicly.

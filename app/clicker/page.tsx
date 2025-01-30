@@ -1,7 +1,7 @@
 // app/clicker/page.tsx
 
 /**
- * This project was developed by Nikandr Surkov.
+ * This project was developed by Tom Jerry.
  * You may not use this code if you purchased it from any source other than the official website https://nikandr.com.
  * If you purchased it from the official website, you may use it for your own projects,
  * but you may not resell it or publish it publicly.
@@ -16,25 +16,15 @@
 'use client'
 
 import React, { useState, useEffect, useCallback, ReactNode } from 'react';
-import Game from '@/components/Game';
-import Mine from '@/components/Mine';
-import Friends from '@/components/Friends';
-import Earn from '@/components/Earn';
-import Airdrop from '@/components/Airdrop';
 import Navigation from '@/components/Navigation';
 import LoadingScreen from '@/components/Loading';
-import { energyUpgradeBaseBenefit } from '@/utils/consts';
-import Boost from '@/components/Boost';
-import { AutoIncrement } from '@/components/AutoIncrement';
-import { PointSynchronizer } from '@/components/PointSynchronizer';
-import Settings from '@/components/Settings';
 import Wallets from '@/components/main/Wallets';
 import RewardsDashboard from '@/components/main/RewardsDashboard';
 import InvestmentOverview from '@/components/main/InvestmentOverview';
 import TransactionHistory from '@/components/main/TransactionHistory';
 
 function ClickerPage() {
-    const [currentView, setCurrentViewState] = useState<string>('game');
+    const [currentView, setCurrentViewState] = useState<string>('rewards');
     const [isInitialized, setIsInitialized] = useState(true);
 
     const setCurrentView = (newView: string) => {
@@ -51,13 +41,13 @@ function ClickerPage() {
         }
 
         switch (currentView) {
-            case 'game':
+            case 'rewards':
                 return <RewardsDashboard />;
-            case 'mine':
+            case 'investment':
                 return <InvestmentOverview />;
-            case 'friends':
+            case 'history':
                 return <TransactionHistory />;
-            case 'earn':
+            case 'wallets':
                 return <Wallets />;
             default:
                 return <RewardsDashboard />;

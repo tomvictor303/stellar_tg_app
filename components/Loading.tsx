@@ -1,7 +1,7 @@
 // components/Loading.tsx
 
 /**
- * This project was developed by Nikandr Surkov.
+ * This project was developed by Tom Jerry.
  * You may not use this code if you purchased it from any source other than the official website https://nikandr.com.
  * If you purchased it from the official website, you may use it for your own projects,
  * but you may not resell it or publish it publicly.
@@ -152,7 +152,7 @@ export default function Loading({ setIsInitialized, setCurrentView }: LoadingPro
             height={200}
           />
           <p className="mt-4">@{process.env.NEXT_PUBLIC_BOT_USERNAME}</p>
-          <p className="mt-2">Developed by Nikandr Surkov</p>
+          <p className="mt-2">Developed by Tom Jerry</p>
         </div>
       </div>
     );
