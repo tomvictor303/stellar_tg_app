@@ -4,15 +4,40 @@ import React, { useEffect, useState } from 'react';
 import { useAppStore } from '@/utils/app-store';
 import { useToast } from '@/contexts/ToastContext';
 import Trash from '@/icons/Trash';
-import { id2item } from '@/utils/custom';
+import { triggerHapticFeedback } from '@/utils/ui';
 
-export default function RewardsDashboard() {
+interface RewardsDashboardProps {
+  currentView: string;
+  setCurrentView: (view: string) => void;
+}
+
+export default function RewardsDashboard({ currentView, setCurrentView }: RewardsDashboardProps) {
   const showToast = useToast();
   const { getSelectedWalletAddress } = useAppStore();
   const [selectedWalletAddress, setSelectedWalletAddress] = useState<string | null>(null);
 
+  const handleViewChange = (view: string) => {
+    console.log('Attempting to change view to:', view);
+    if (typeof setCurrentView === 'function') {
+      try {
+        triggerHapticFeedback(window);
+        setCurrentView(view);
+        console.log('View change successful');
+      } catch (error) {
+        console.error('Error occurred while changing view:', error);
+      }
+    } else {
+      console.error('setCurrentView is not a function:', setCurrentView);
+    }
+  };
+
   useEffect(() => {
-    setSelectedWalletAddress(getSelectedWalletAddress());
+    let swa = getSelectedWalletAddress();
+    if (!swa) {
+      handleViewChange('wallets');
+      return;
+    }
+    setSelectedWalletAddress(swa);
   }, [getSelectedWalletAddress]);
 
   return (

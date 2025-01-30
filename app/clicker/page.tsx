@@ -42,15 +42,15 @@ function ClickerPage() {
 
         switch (currentView) {
             case 'rewards':
-                return <RewardsDashboard />;
+                return <RewardsDashboard currentView={currentView} setCurrentView={setCurrentView}/>;
             case 'investment':
-                return <InvestmentOverview />;
+                return <InvestmentOverview currentView={currentView} setCurrentView={setCurrentView}/>;
             case 'history':
-                return <TransactionHistory />;
+                return <TransactionHistory currentView={currentView} setCurrentView={setCurrentView}/>;
             case 'wallets':
                 return <Wallets />;
             default:
-                return <RewardsDashboard />;
+                return <RewardsDashboard currentView={currentView} setCurrentView={setCurrentView}/>;
         }
     }, [currentView, isInitialized]);
 
