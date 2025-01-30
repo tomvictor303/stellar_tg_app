@@ -23,9 +23,9 @@ export default function MyApp({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return (
-        <TonConnectUIProvider manifestUrl={WALLET_MANIFEST_URL}>
+    return (<>
+        {/* <TonConnectUIProvider manifestUrl={WALLET_MANIFEST_URL}> */}
             {children}
-        </TonConnectUIProvider>
-    );
+        {/* </TonConnectUIProvider> */}
+    </>);
 }
