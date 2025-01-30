@@ -7,9 +7,8 @@ import Trash from '@/icons/Trash';
 
 export default function WalletTodo() {
   const showToast = useToast();
-  const { wallets, addWallet, removeWallet } = useAppStore();
+  const { wallets, addWallet, removeWallet, selectedWalletId, setSelectedId } = useAppStore();
   const [newWallet, setNewWallet] = useState('');
-  const [selectedWalletId, setSelectedWalletId] = useState<string | null>(null);
 
   // Validate XLM Wallet Address
   const isValidStellarAddress = (address: string) => /^G[A-Z2-7]{55}$/.test(address);
@@ -33,7 +32,7 @@ export default function WalletTodo() {
 
   // Handle Select Wallet
   const handleSelectWallet = (walletId: string) => {
-    setSelectedWalletId(walletId === selectedWalletId ? null : walletId);
+    setSelectedId(selectedWalletId === walletId ? null : walletId);
   };
 
   return (

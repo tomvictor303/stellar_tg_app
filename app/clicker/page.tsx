@@ -29,10 +29,13 @@ import { AutoIncrement } from '@/components/AutoIncrement';
 import { PointSynchronizer } from '@/components/PointSynchronizer';
 import Settings from '@/components/Settings';
 import Wallets from '@/components/main/Wallets';
+import RewardsDashboard from '@/components/main/RewardsDashboard';
+import InvestmentOverview from '@/components/main/InvestmentOverview';
+import TransactionHistory from '@/components/main/TransactionHistory';
 
 function ClickerPage() {
-    const [currentView, setCurrentViewState] = useState<string>('loading');
-    const [isInitialized, setIsInitialized] = useState(false);
+    const [currentView, setCurrentViewState] = useState<string>('game');
+    const [isInitialized, setIsInitialized] = useState(true);
 
     const setCurrentView = (newView: string) => {
         console.log('Changing view to:', newView);
@@ -49,30 +52,15 @@ function ClickerPage() {
 
         switch (currentView) {
             case 'game':
-                return <Game
-                    currentView={currentView}
-                    setCurrentView={setCurrentView}
-                />;
-            case 'boost':
-                return <Boost
-                    currentView={currentView}
-                    setCurrentView={setCurrentView}
-                />;
-            case 'settings':
-                return <Settings setCurrentView={setCurrentView} />;
+                return <RewardsDashboard />;
             case 'mine':
-                return <Mine setCurrentView={setCurrentView} />;
+                return <InvestmentOverview />;
             case 'friends':
-                return <Friends />;
+                return <TransactionHistory />;
             case 'earn':
                 return <Wallets />;
-            case 'airdrop':
-                return <Airdrop />;
             default:
-                return <Game
-                    currentView={currentView}
-                    setCurrentView={setCurrentView}
-                />;
+                return <RewardsDashboard />;
         }
     }, [currentView, isInitialized]);
 
@@ -80,13 +68,13 @@ function ClickerPage() {
 
     return (
         <div className="bg-black min-h-screen text-white">
-            {
+            {/* {
                 isInitialized &&
                 <>
                     <AutoIncrement />
                     <PointSynchronizer />
                 </>
-            }
+            } */}
             {renderCurrentView()}
             {isInitialized && currentView !== 'loading' && (
                 <Navigation
