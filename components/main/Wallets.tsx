@@ -48,14 +48,17 @@ export default function WalletTodo() {
                 <h1 className="text-lg text-center font-bold mb-4">Your Stellar Wallets</h1>
 
                 {/* Add Wallet Button */}
-                <div className="text-center mb-4">
+                <div className="text-center mb-4 px-4">
                   <button 
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-500 text-white px-6 py-2 rounded-lg"
+                    className="w-full bg-[#272a2f] text-white border-2 border-dashed border-green-500 px-6 py-3 rounded-xl"
                   >
-                    Add Wallet
+                    + Add Wallet
                   </button>
                 </div>
+
+                {/* Horizontal Line */}
+                <hr className="border-gray-600 mb-4 mx-4" />
 
                 {/* Wallet List */}
                 <ul className="mt-4 space-y-4">
