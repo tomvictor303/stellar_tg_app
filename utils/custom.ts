@@ -1,3 +1,7 @@
+import { Horizon } from 'stellar-sdk';
+
+const server = new Horizon.Server('https://horizon.stellar.org'); // Use testnet: 'https://horizon-testnet.stellar.org'
+
 export const parse_fetch_response = async (response: any) => {
   if (response.ok) {
     return response.json();
@@ -118,3 +122,22 @@ return formData;
 // BEGIN web3 settings functions
 // ================================================================================================
 // ================================================================================================
+export const getTokenBalance = async (publicKey: string, assetCode: string, issuerAddress: string): Promise<string | null> => {
+  try {
+      const account = await server.loadAccount(publicKey);
+      const balance = account.balances.find(
+          (b: any) => b.asset_code === assetCode && b.asset_issuer === issuerAddress
+      );
+
+      if (balance) {
+          console.log(`Balance of ${assetCode}: ${balance.balance}`);
+          return balance.balance;
+      } else {
+          console.log(`No balance found for ${assetCode}`);
+          return "0";
+      }
+  } catch (error) {
+      console.error("Error fetching balance:", error);
+      return null;
+  }
+}

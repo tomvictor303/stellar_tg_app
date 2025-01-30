@@ -5,6 +5,8 @@ import { useAppStore } from '@/utils/app-store';
 import { useToast } from '@/contexts/ToastContext';
 import Trash from '@/icons/Trash';
 import { triggerHapticFeedback } from '@/utils/ui';
+import { STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS } from '@/utils/consts';
+import { getTokenBalance } from '@/utils/custom';
 
 interface RewardsDashboardProps {
   currentView: string;
@@ -15,7 +17,9 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
   const showToast = useToast();
   const { getSelectedWalletAddress } = useAppStore();
   const [selectedWalletAddress, setSelectedWalletAddress] = useState<string | null>(null);
+  const [tokenBalance, setTokenBalance] = useState<number | null>(null);
 
+  // BEGIN initial_load_logic
   const handleViewChange = (view: string) => {
     console.log('Attempting to change view to:', view);
     if (typeof setCurrentView === 'function') {
@@ -40,6 +44,20 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
     setSelectedWalletAddress(swa);
   }, [getSelectedWalletAddress]);
 
+  useEffect(() => {
+    load_data();
+  }, [selectedWalletAddress])
+
+  const load_data = async () => {
+    if (!selectedWalletAddress) { return ;}
+
+    const tokenBalance = await getTokenBalance(selectedWalletAddress, STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS);
+    setTokenBalance(Number(tokenBalance));
+  };
+  // END initial_load_logic
+
+  const isLoaded: boolean = tokenBalance !== null;
+  
   return (
     <div className="bg-black flex justify-center min-h-screen">
       <div className="w-full bg-black text-white font-bold flex flex-col max-w-xl">
@@ -48,7 +66,14 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
             <div className="px-4 pt-16 pb-36">
               <div className="relative">
                 {/** BEGIN page_content */}
-                <h1 className="text-2xl text-center mt-4">{selectedWalletAddress}</h1>
+                { isLoaded ? (<>
+                  {/** BEGIN after_web3_loaded */}
+                  <h1 className="text-2xl text-center mt-4">{selectedWalletAddress}</h1>
+                  <h1 className="text-2xl text-center mt-4">{tokenBalance}</h1>
+                  {/** BEGIN after_web3_loaded */}
+                </>): (<>
+                  <h1 className="text-2xl text-center mt-4">Loading ...</h1>
+                </>)}
                 {/** END page_content */}
               </div>
             </div>

@@ -157,3 +157,7 @@ export const mineUpgradeCostCoefficient = 1.5;
 
 export const mineUpgradeBaseBenefit = 100;
 export const mineUpgradeBenefitCoefficient = 1.2;
+
+// Stellar token
+export const STELLAR_ASSET_CODE = "XLMONE";
+export const STELLAR_ISSUER_ADDRESS = "GBT5GHVRNDFJLLTOO3KV7PUTRDEJJZDMLK5JPAW7E6SCJUANZ6Z76Z4P";
