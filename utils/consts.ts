@@ -161,3 +161,128 @@ export const mineUpgradeBenefitCoefficient = 1.2;
 // Stellar token
 export const STELLAR_ASSET_CODE = "XLMONE";
 export const STELLAR_ISSUER_ADDRESS = "GBT5GHVRNDFJLLTOO3KV7PUTRDEJJZDMLK5JPAW7E6SCJUANZ6Z76Z4P";
+
+export interface XLMOneLevel {
+  level: number;
+  start: number;
+  end: number;
+  cryptoRewardPercent: number;
+  metalRewardPercent: number;
+  dailyReturnPercent: number;
+  bonusXLMPostICO?: number;
+  isBenefitFromPrevious: boolean;
+  additionalBenefits?: string[];
+}
+
+export const XLMOneLevels: XLMOneLevel[] = [
+  {
+    level: 1,
+    start: 1000,
+    end: 5000,
+    cryptoRewardPercent: 6000,
+    metalRewardPercent: 12000,
+    dailyReturnPercent: 5,
+    isBenefitFromPrevious: false,
+  },
+  {
+    level: 2,
+    start: 5001,
+    end: 20000,
+    cryptoRewardPercent: 9000,
+    metalRewardPercent: 21000,
+    dailyReturnPercent: 10,
+    bonusXLMPostICO: 750000,
+    isBenefitFromPrevious: true,
+  },
+  {
+    level: 3,
+    start: 20001,
+    end: 50000,
+    cryptoRewardPercent: 18000,
+    metalRewardPercent: 33000,
+    dailyReturnPercent: 20,
+    bonusXLMPostICO: 2250000,
+    isBenefitFromPrevious: true,
+  },
+  {
+    level: 4,
+    start: 50001,
+    end: 100000,
+    cryptoRewardPercent: 39000,
+    metalRewardPercent: 54000,
+    dailyReturnPercent: 30,
+    bonusXLMPostICO: 3750000,
+    isBenefitFromPrevious: true,
+    additionalBenefits: ["Exclusive Stellar NFTs"],
+  },
+  {
+    level: 5,
+    start: 100001,
+    end: 200000,
+    cryptoRewardPercent: 60000,
+    metalRewardPercent: 75000,
+    dailyReturnPercent: 40,
+    bonusXLMPostICO: 7500000,
+    isBenefitFromPrevious: true,
+    additionalBenefits: ["Priority Staking Opportunities"],
+  },
+  {
+    level: 6,
+    start: 200001,
+    end: 500000,
+    cryptoRewardPercent: 90000,
+    metalRewardPercent: 120000,
+    dailyReturnPercent: 50,
+    bonusXLMPostICO: 15000000,
+    isBenefitFromPrevious: true,
+    additionalBenefits: ["Free Stellar-Based Airdrops"],
+  },
+  {
+    level: 7,
+    start: 500001,
+    end: 1000000,
+    cryptoRewardPercent: 120000,
+    metalRewardPercent: 180000,
+    dailyReturnPercent: 60,
+    bonusXLMPostICO: 30000000,
+    isBenefitFromPrevious: true,
+    additionalBenefits: ["Access to Advanced DeFi Tools"],
+  },
+  {
+    level: 8,
+    start: 1000001,
+    end: 2000000,
+    cryptoRewardPercent: 150000,
+    metalRewardPercent: 240000,
+    dailyReturnPercent: 70,
+    bonusXLMPostICO: 150000000,
+    isBenefitFromPrevious: true,
+    additionalBenefits: ["Voting Power in wXLM & Stellar Governance", "Access to Pre-Launch Tokens"],
+  },
+  {
+    level: 9,
+    start: 2000001,
+    end: 5000000,
+    cryptoRewardPercent: 225000,
+    metalRewardPercent: 375000,
+    dailyReturnPercent: 80,
+    bonusXLMPostICO: 300000000,
+    isBenefitFromPrevious: true,
+    additionalBenefits: ["Lifetime Free Stellar Transactions"],
+  },
+  {
+    level: 10,
+    start: 5000001,
+    end: 100000000,
+    cryptoRewardPercent: 300000,
+    metalRewardPercent: 450000,
+    dailyReturnPercent: 100,
+    bonusXLMPostICO: 2000000000,
+    isBenefitFromPrevious: true,
+  },
+];
+
+export const getXLMOneLevel = (userBalance: number): XLMOneLevel | null => {
+  const v = XLMOneLevels.find(level => userBalance >= level.start && userBalance <= level.end)
+  return v ? v : null;
+};

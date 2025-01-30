@@ -5,7 +5,7 @@ import { useAppStore } from '@/utils/app-store';
 import { useToast } from '@/contexts/ToastContext';
 import Trash from '@/icons/Trash';
 import { triggerHapticFeedback } from '@/utils/ui';
-import { STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS } from '@/utils/consts';
+import { getXLMOneLevel, STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS, XLMOneLevel } from '@/utils/consts';
 import { getTokenBalance } from '@/utils/custom';
 
 interface RewardsDashboardProps {
@@ -18,6 +18,7 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
   const { getSelectedWalletAddress } = useAppStore();
   const [selectedWalletAddress, setSelectedWalletAddress] = useState<string | null>(null);
   const [tokenBalance, setTokenBalance] = useState<number | null>(null);
+  const [userLevel, setUserLevel] = useState<XLMOneLevel | null>(null);
 
   // BEGIN initial_load_logic
   const handleViewChange = (view: string) => {
@@ -53,10 +54,12 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
 
     const tokenBalance = await getTokenBalance(selectedWalletAddress, STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS);
     setTokenBalance(Number(tokenBalance));
+    setUserLevel(getXLMOneLevel(Number(tokenBalance)));
   };
   // END initial_load_logic
 
-  const isLoaded: boolean = tokenBalance !== null;
+  const isLoaded: boolean = tokenBalance !== null ;
+  const isInsufficientBalance: boolean = isLoaded && userLevel === null;
   
   return (
     <div className="bg-black flex justify-center min-h-screen">
