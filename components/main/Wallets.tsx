@@ -9,6 +9,7 @@ export default function WalletTodo() {
   const showToast = useToast();
   const { wallets, addWallet, removeWallet, selectedWalletId, setSelectedId } = useAppStore();
   const [newWallet, setNewWallet] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Validate XLM Wallet Address
   const isValidStellarAddress = (address: string) => /^G[A-Z2-7]{55}$/.test(address);
@@ -27,6 +28,7 @@ export default function WalletTodo() {
 
     addWallet(newWallet);
     setNewWallet('');
+    setIsModalOpen(false); // Close modal after adding
     showToast('Wallet address added!', 'success');
   };
 
@@ -45,17 +47,13 @@ export default function WalletTodo() {
                 {/** BEGIN page_content */}
                 <h1 className="text-lg text-center font-bold mb-4">Your Stellar Wallets</h1>
 
-                {/* Add Wallet Input */}
-                <div className="flex items-center bg-gray-800 p-2 rounded-lg">
-                  <input
-                    type="text"
-                    className="w-full bg-transparent text-white outline-none px-2"
-                    placeholder="Enter XLM Wallet Address"
-                    value={newWallet}
-                    onChange={(e) => setNewWallet(e.target.value)}
-                  />
-                  <button onClick={handleAddWallet} className="bg-green-500 text-white px-4 py-1 rounded-lg ml-2">
-                    Add
+                {/* Add Wallet Button */}
+                <div className="text-center mb-4">
+                  <button 
+                    onClick={() => setIsModalOpen(true)}
+                    className="bg-green-500 text-white px-6 py-2 rounded-lg"
+                  >
+                    Add Wallet
                   </button>
                 </div>
 
@@ -91,12 +89,47 @@ export default function WalletTodo() {
                     </li>
                   ))}
                 </ul>
+
                 {/** END page_content */}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Wallet Add Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+          <div className="bg-gray-900 p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 className="text-xl font-bold text-white mb-4 text-center">Add Wallet</h2>
+
+            {/* Input Field */}
+            <input
+              type="text"
+              className="w-full bg-gray-700 text-white p-2 rounded-lg mb-4 outline-none"
+              placeholder="Enter XLM Wallet Address"
+              value={newWallet}
+              onChange={(e) => setNewWallet(e.target.value)}
+            />
+
+            {/* Buttons */}
+            <div className="flex justify-end space-x-4">
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="bg-gray-600 text-white px-4 py-2 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleAddWallet}
+                className="bg-green-500 text-white px-4 py-2 rounded-lg"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
