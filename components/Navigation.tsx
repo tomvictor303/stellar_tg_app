@@ -26,6 +26,7 @@ import Wallet from '@/icons/Wallet';
 import { FC } from 'react';
 import { IconProps } from '@/utils/types';
 import { triggerHapticFeedback } from '@/utils/ui';
+import HistoryClock from '@/icons/HistoryClock';
 
 type NavItem = {
     name: string;
@@ -35,9 +36,9 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-    { name: 'Rewards', icon: IceCube, view: 'rewards' },
-    { name: 'Investment', icon: Mine, view: 'investment' },
-    { name: 'History', icon: Friends, view: 'history' },
+    { name: 'Rewards', icon: Rocket, view: 'rewards' },
+    { name: 'Investment', icon: Coins, view: 'investment' },
+    { name: 'History', icon: HistoryClock, view: 'history' },
     { name: 'Wallets', icon: Wallet, view: 'wallets' },
 ];
 
