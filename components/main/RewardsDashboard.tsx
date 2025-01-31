@@ -7,6 +7,8 @@ import Trash from '@/icons/Trash';
 import { triggerHapticFeedback } from '@/utils/ui';
 import { getXLMOneLevel, STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS, XLMOneLevel } from '@/utils/consts';
 import { getTokenBalance } from '@/utils/custom';
+import { baseGift } from '@/images';
+import Image, { StaticImageData } from 'next/image';
 
 interface RewardsDashboardProps {
   currentView: string;
@@ -72,9 +74,6 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
                 {isLoaded ? (
                   <>
                     {/** BEGIN after_web3_loaded */}
-                    <h1 className="text-lg font-bold text-yellow-400 drop-shadow-md">
-                      Your XLMONE Holdings: <span className="text-green-400">{Number(tokenBalance).toFixed(0)}</span>
-                    </h1>
                     {Number(tokenBalance) < 1000 ? (
                       <>
                         {/** BEGIN insufficient_balance_warning */}
@@ -89,49 +88,28 @@ export default function RewardsDashboard({ currentView, setCurrentView }: Reward
                     ) : (
                       <>
                         {/** BEGIN normal_view_sufficient_holdings */}
-                        <h1 className="text-lg font-bold text-green-500 mt-4 drop-shadow-md">
-                          Your Tier Level: <span className="text-white">{userLevel?.level}</span>
-                        </h1>
-                        <h1 className="text-lg mt-6 text-center">Your Benefits From Tier</h1>
-                        <div className="bg-gray-900 text-white p-6 mt-3 rounded-xl border-4 border-yellow-500 shadow-lg ring-2 ring-yellow-400">
-                          <ul className="space-y-3">
-                            <li className="flex items-top space-x-2">
-                              <span className="text-yellow-400 text-lg">💰</span>
-                              <p className="text-base font-semibold">
-                                Crypto Reward: <br />
-                                <span className="text-green-400">{Number(userLevel?.cryptoRewardPercent).toLocaleString()}%</span> in each Crypto Reward
-                              </p>
-                            </li>
-                            <li className="flex items-top space-x-2">
-                              <span className="text-yellow-400 text-lg">👑</span>
-                              <p className="text-base font-semibold">
-                                Precious Metals Reward: <br />
-                                <span className="text-green-400">{Number(userLevel?.metalRewardPercent).toLocaleString()}%</span> in each Metal Reward
-                              </p>
-                            </li>
-                            {userLevel?.isBenefitFromPrevious && (
-                              <li className="text-gray-300 text-base">- All Previous Benefits from Lower Levels</li>
-                            )}
-                            {userLevel?.additionalBenefits?.map((benefit, index) => (
-                              <li key={index} className="flex items-center space-x-2">
-                                <span className="text-yellow-300 text-lg">⭐️</span>
-                                <p className="text-base font-semibold">{benefit}</p>
-                              </li>
-                            ))}
-                            <li className="flex items-top space-x-2">
-                              <span className="text-pink-400 text-lg">💝</span>
-                              <p className="text-base font-semibold">
-                                Bonus: <br /> 
-                                <span className="text-green-400">{Number(userLevel?.bonusXLMPostICO).toLocaleString()} XLM</span> post-ICO
-                              </p>
-                            </li>
-                            <li className="flex items-center space-x-2">
-                              <span className="text-blue-400 text-lg">💻</span>
-                              <p className="text-base font-semibold">
-                                Daily <span className="text-green-400">{Number(userLevel?.dailyReturnPercent).toLocaleString()}% XLM</span> Return
-                              </p>
-                            </li>
-                          </ul>
+                        <div className="flex flex-col items-center text-center">
+                          {/* Vault Image */}
+                          <Image src={baseGift} alt="Base Gift" className="w-32 h-32 mb-4 drop-shadow-xl animate-pulse" />
+                          {/* Rewards Info */}
+                          <div className="bg-gray-900 p-6 rounded-xl border-4 border-yellow-500 shadow-xl ring-2 ring-yellow-400 max-w-sm">
+                            <h1 className="text-lg font-bold text-green-400 drop-shadow-md">
+                              Current Rewards Balance:
+                              <span className="text-yellow-300"> {userLevel ? Number(Number(tokenBalance) * 10 / 100).toLocaleString() : 0} XLM</span>
+                            </h1>
+                            
+                            <h1 className="text-lg font-bold text-green-400 mt-3 drop-shadow-md">
+                              Total Rewards Earned:
+                              <span className="text-yellow-300"> {Number(userLevel?.bonusXLMPostICO).toLocaleString()} XLM</span>
+                              <br />
+                              <span className="text-gray-400 text-sm">(Available to withdraw after ICO)</span>
+                            </h1>
+
+                            <h1 className="text-lg font-bold text-green-400 mt-3 drop-shadow-md">
+                              Your Daily XLM Rewards:
+                              <span className="text-yellow-300"> {userLevel ? Number(Number(tokenBalance) * userLevel?.dailyReturnPercent / 100).toLocaleString() : 0} XLM</span>
+                            </h1>
+                          </div>
                         </div>
                         {/** END normal_view_sufficient_holdings */}
                       </>
