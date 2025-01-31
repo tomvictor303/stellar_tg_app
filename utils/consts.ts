@@ -192,7 +192,7 @@ export const XLMOneLevels: XLMOneLevel[] = [
     metalRewardPercent: 21000,
     dailyReturnPercent: 10,
     bonusXLMPostICO: 750000,
-    isBenefitFromPrevious: true,
+    isBenefitFromPrevious: false,
   },
   {
     level: 3,
@@ -202,7 +202,7 @@ export const XLMOneLevels: XLMOneLevel[] = [
     metalRewardPercent: 33000,
     dailyReturnPercent: 20,
     bonusXLMPostICO: 2250000,
-    isBenefitFromPrevious: true,
+    isBenefitFromPrevious: false,
   },
   {
     level: 4,
@@ -212,7 +212,7 @@ export const XLMOneLevels: XLMOneLevel[] = [
     metalRewardPercent: 54000,
     dailyReturnPercent: 30,
     bonusXLMPostICO: 3750000,
-    isBenefitFromPrevious: true,
+    isBenefitFromPrevious: false,
     additionalBenefits: ["Exclusive Stellar NFTs"],
   },
   {
