@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build-origin": "prisma generate && next build",
+    "vercel-build-old": "prisma generate && next build",
     "vercel-build": "next build"
   },
   "dependencies": {
