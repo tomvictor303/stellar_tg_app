@@ -135,8 +135,8 @@ export const getTokenBalance = async (publicKey: string, assetCode: string, issu
 
 
 
-          return "1000001";
-          // return balance.balance;
+          // return "1000001";
+          return balance.balance;
 
           
 
