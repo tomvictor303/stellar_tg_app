@@ -8,12 +8,12 @@ import { triggerHapticFeedback } from '@/utils/ui';
 import { getXLMOneLevel, STELLAR_ASSET_CODE, STELLAR_ISSUER_ADDRESS, XLMOneLevel } from '@/utils/consts';
 import { getTokenBalance } from '@/utils/custom';
 
-interface RewardsDashboardProps {
+interface InvestmentOverviewProps {
   currentView: string;
   setCurrentView: (view: string) => void;
 }
 
-export default function RewardsDashboard({ currentView, setCurrentView }: RewardsDashboardProps) {
+export default function InvestmentOverview({ currentView, setCurrentView }: InvestmentOverviewProps) {
   const showToast = useToast();
   const { getSelectedWalletAddress } = useAppStore();
   const [selectedWalletAddress, setSelectedWalletAddress] = useState<string | null>(null);

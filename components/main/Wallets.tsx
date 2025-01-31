@@ -37,12 +37,12 @@ export default function WalletTodo() {
     setSelectedId(selectedWalletId === walletId ? null : walletId);
   };
 
-  return (
+  return (    
     <div className="bg-black flex justify-center min-h-screen">
       <div className="w-full bg-black text-white font-bold flex flex-col max-w-xl">
-        <div className="flex-grow mt-4 bg-[#f3ba2f] rounded-t-[48px] relative top-glow z-0">
-          <div className="mt-[2px] bg-[#1d2025] rounded-t-[46px] h-full overflow-y-auto no-scrollbar">
-            <div className="px-4 pt-16 pb-36">
+        <div className="flex-grow mt-4 bg-[#f3ba2f] rounded-t-[40px] relative top-glow z-0">
+          <div className="mt-[2px] bg-[#1d2025] rounded-t-[38px] h-full overflow-y-auto no-scrollbar">
+            <div className="px-6 pt-12 pb-24">
               <div className="relative">
                 {/** BEGIN page_content */}
                 <h1 className="text-lg text-center font-bold mb-4">Your Stellar Wallets</h1>
