@@ -72,9 +72,9 @@ export default function WalletTodo() {
                         }`}
                       >
                         {/* Custom Styled Radio Button */}
-                        <div className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-white mr-3">
+                        <div className="w-4 h-4 flex items-center justify-center rounded-full border border-white mr-2">
                           {selectedWalletId === wallet.id && (
-                            <div className="w-3.5 h-3.5 bg-white rounded-full"></div>
+                            <div className="w-2 h-2 bg-white rounded-full"></div>
                           )}
                         </div>
                         <div>
